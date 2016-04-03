@@ -37,12 +37,12 @@ class GenderDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class CountryList(generics.ListCreateAPIView):
     queryset = Country.objects.all()
-    serializer_class = CategorySerializer
+    serializer_class = CountrySerializer
 
 
 class CountryDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Country.objects.all()
-    serializer_class = CategorySerializer
+    serializer_class = CountrySerializer
 
 
 class LanguageList(generics.ListCreateAPIView):

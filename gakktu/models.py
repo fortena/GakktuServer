@@ -5,17 +5,29 @@ from django.contrib.auth.models import User
 class Gender(models.Model):
     name = models.TextField()
 
+    def __unicode__(self):
+        return self.name
+
 
 class Country(models.Model):
     name = models.TextField()
+
+    def __unicode__(self):
+        return self.name
 
 
 class Language(models.Model):
     name = models.TextField()
 
+    def __unicode__(self):
+        return self.name
+
 
 class Credential(models.Model):
     name = models.TextField()
+
+    def __unicode__(self):
+        return self.name
 
 
 class Person(models.Model):
@@ -27,14 +39,20 @@ class Person(models.Model):
     languages = models.ManyToManyField(Language)
     gender = models.ForeignKey(Gender)
 
+    def __unicode__(self):
+        return self.name
+
 
 class Category(models.Model):
     name = models.TextField()
 
+    def __unicode__(self):
+        return self.name
+
 
 class Content(models.Model):
     content = models.TextField()
-    author = models.TextField()
+    author = models.ForeignKey(Person)
     originalDate = models.DateField()
     rating = models.IntegerField()
     numberOfRatings = models.IntegerField()
@@ -44,6 +62,9 @@ class Article(Content):
     title = models.TextField()
     category = models.ForeignKey(Category)
     language = models.ForeignKey(Language)
+
+    def __unicode__(self):
+        return self.title
 
 
 class ArticleComment(Content):
