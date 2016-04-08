@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 from .models import (Gender, Country, Language, Credential, Person,
-                     Category, Article, ArticleComment, Thread, ThreadComment)
+                     Category, Article)
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -59,27 +59,31 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ('id', 'name')
 
 
-class ArticleSerializer(serializers.ModelSerializer):
+#class ArticleSerializer(serializers.ModelSerializer):
+#    class Meta:
+#        model = Article
+#        fields = ('id', 'title', 'category', 'language', 'content', 'author', 'originalDate', 'rating', 'numberOfRatings')
 
+
+class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
-        fields = ('id', 'title', 'category', 'language', 'content', 'author', 'originalDate', 'rating', 'numberOfRatings')
+        fields = ('id', 'title', 'content', 'image')
 
 
-
-class ArticleCommentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ArticleComment
-        fields = ('id', 'article', 'content', 'author', 'originalDate', 'rating', 'numberOfRatings')
-
-
-class ThreadSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Thread
-        fields = ('id', 'title', 'content', 'author', 'originalDate', 'rating', 'numberOfRatings')
+#class ArticleCommentSerializer(serializers.ModelSerializer):
+#    class Meta:
+#        model = ArticleComment
+#        fields = ('id', 'article', 'content', 'author', 'originalDate', 'rating', 'numberOfRatings')
 
 
-class ThreadCommentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ThreadComment
-        fields = ('id', 'thread', 'content', 'author', 'originalDate', 'rating', 'numberOfRatings')
+#class ThreadSerializer(serializers.ModelSerializer):
+#    class Meta:
+#        model = Thread
+#        fields = ('id', 'title', 'content', 'author', 'originalDate', 'rating', 'numberOfRatings')
+
+
+#class ThreadCommentSerializer(serializers.ModelSerializer):
+#    class Meta:
+#        model = ThreadComment
+#        fields = ('id', 'thread', 'content', 'author', 'originalDate', 'rating', 'numberOfRatings')
