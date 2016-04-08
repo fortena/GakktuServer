@@ -1,12 +1,11 @@
 from django.shortcuts import render
-from rest_framework.permissions import IsAuthenticated
+#from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets, generics
 from .models import (Gender, Country, Language, Credential, Person,
-                     Category, Article, ArticleComment, Thread, ThreadComment)
+                     Category, Article)
 from .serializers import (UserSerializer, GroupSerializer, GenderSerializer, CountrySerializer, LanguageSerializer,
-                          CredentialSerializer, PersonSerializer, CategorySerializer, ArticleSerializer,
-                          ArticleCommentSerializer, ThreadSerializer, ThreadCommentSerializer)
+                          CredentialSerializer, PersonSerializer, CategorySerializer, ArticleSerializer)
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -96,31 +95,31 @@ class ArticleDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ArticleSerializer
 
 
-class ArticleCommentList(generics.ListCreateAPIView):
-    queryset = ArticleComment.objects.all()
-    serializer_class = ArticleCommentSerializer
+#class ArticleCommentList(generics.ListCreateAPIView):
+#    queryset = ArticleComment.objects.all()
+#    serializer_class = ArticleCommentSerializer
 
 
-class ArticleCommentDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = ArticleComment.objects.all()
-    serializer_class = ArticleCommentSerializer
+#class ArticleCommentDetail(generics.RetrieveUpdateDestroyAPIView):
+#    queryset = ArticleComment.objects.all()
+#    serializer_class = ArticleCommentSerializer
 
 
-class ThreadList(generics.ListCreateAPIView):
-    queryset = Thread.objects.all()
-    serializer_class = ThreadSerializer
+#class ThreadList(generics.ListCreateAPIView):
+#    queryset = Thread.objects.all()
+#    serializer_class = ThreadSerializer
 
 
-class ThreadDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Thread.objects.all()
-    serializer_class = ThreadSerializer
+#class ThreadDetail(generics.RetrieveUpdateDestroyAPIView):
+#    queryset = Thread.objects.all()
+#    serializer_class = ThreadSerializer
 
 
-class ThreadCommentList(generics.ListCreateAPIView):
-    queryset = ThreadComment.objects.all()
-    serializer_class = ThreadCommentSerializer
+#class ThreadCommentList(generics.ListCreateAPIView):
+#    queryset = ThreadComment.objects.all()
+#    serializer_class = ThreadCommentSerializer
 
 
-class ThreadCommentDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = ThreadComment.objects.all()
-    serializer_class = ThreadCommentSerializer
+#class ThreadCommentDetail(generics.RetrieveUpdateDestroyAPIView):
+#    queryset = ThreadComment.objects.all()
+#    serializer_class = ThreadCommentSerializer
