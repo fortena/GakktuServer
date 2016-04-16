@@ -3,9 +3,9 @@ from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets, generics
 from .models import (Gender, Country, Language, Credential, Person,
-                     Category, Article)
+                     Category, Article, UserProfile)
 from .serializers import (UserSerializer, GroupSerializer, GenderSerializer, CountrySerializer, LanguageSerializer,
-                          CredentialSerializer, PersonSerializer, CategorySerializer, ArticleSerializer)
+                          CredentialSerializer, PersonSerializer, CategorySerializer, ArticleSerializer, UserProfileSerializer)
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -23,6 +23,15 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
+
+class UserProfileList(generics.ListCreateAPIView):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
+
+
+class UserProfileDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = UserProfile.objects.all()
+    serializers_class = UserProfileSerializer
 
 class GenderList(generics.ListCreateAPIView):
     queryset = Gender.objects.all()

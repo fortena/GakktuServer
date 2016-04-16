@@ -42,6 +42,11 @@ class Person(models.Model):
     def __unicode__(self):
         return self.name
 
+class UserProfile(models.Model):
+    user = models.ForeignKey(User)
+    languages = models.ManyToManyField(Language, blank=True)
+    avatar = models.TextField(blank=True)
+
 
 class Category(models.Model):
     name = models.TextField()
@@ -83,8 +88,3 @@ class Article(models.Model):
 
 #class ThreadComment(Content):
 #    Thread = models.ForeignKey(Thread)
-
-
-
-
-

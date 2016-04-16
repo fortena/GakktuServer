@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 from .models import (Gender, Country, Language, Credential, Person,
-                     Category, Article)
+                     Category, Article, UserProfile)
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -14,6 +14,12 @@ class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
         fields = ('id', 'url', 'name')
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ('id', 'user', 'avatar', 'languages')
 
 
 class GenderSerializer(serializers.ModelSerializer):
