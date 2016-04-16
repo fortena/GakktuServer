@@ -2,7 +2,7 @@ from django.conf.urls import url, include
 from rest_framework import routers
 from .views import (UserViewSet, GroupViewSet, GenderList, GenderDetail, CountryList, CountryDetail, LanguageList,
                     LanguageDetail, CredentialList, CredentialDetail, PersonList, PersonDetail, CategoryList,
-                    CategoryDetail, ArticleList, ArticleDetail)
+                    CategoryDetail, ArticleList, ArticleDetail, UserProfileList, UserProfileDetail)
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -27,6 +27,8 @@ urlpatterns = [
     url(r'^categories/(?P<pk>[0-9]+)/$', CategoryDetail.as_view()),
     url(r'^articles/$', ArticleList.as_view()),
     url(r'^articles/(?P<pk>[0-9]+)/$', ArticleDetail.as_view()),
+    url(r'^userprofiles/$', UserProfileList.as_view()),
+    url(r'^userprofiles/(?P<pk>[0-9]+)/$', UserProfileDetail.as_view()),
     #url(r'^articlecomments/$', ArticleCommentList.as_view()),
     #url(r'^articlecomments/(?P<pk>[0-9]+)/$', ArticleCommentDetail.as_view()),
     #url(r'^threads/$', ThreadList.as_view()),

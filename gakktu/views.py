@@ -26,7 +26,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 class UserProfileList(generics.ListCreateAPIView):
     queryset = UserProfile.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserProfileSerializer
 
 
 class UserProfileDetail(generics.RetrieveUpdateDestroyAPIView):
