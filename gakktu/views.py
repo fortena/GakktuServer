@@ -1,7 +1,8 @@
 from django.shortcuts import render
-#from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User, Group
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, status
+from rest_framework.response import Response
 from .models import (Gender, Country, Language, Credential, Person,
                      Category, Article, UserProfile)
 from .serializers import (UserSerializer, GroupSerializer, GenderSerializer, CountrySerializer, LanguageSerializer,
@@ -27,6 +28,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 class UserProfileList(generics.ListCreateAPIView):
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
+    permission_classes = (IsAuthenticated,)
 
 
 class UserProfileDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -94,6 +96,23 @@ class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 class ArticleList(generics.ListCreateAPIView):
+    def create(self, request, *args, **kwargs):
+        data = {
+            'title': request.data.get('title'),
+            'content': request.data.get('content'),
+            'image': request.data.get('image'),
+            'author': self.request.user.id
+        }
+        serializer = ArticleSerializer(data=data)
+        self.perform_create(serializer)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def perform_create(self, serializer):
+        if serializer.is_valid():
+            instance = serializer.save()
+        else:
+            print(serializer.errors)
+
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     #permission_classes = (IsAuthenticated,)
