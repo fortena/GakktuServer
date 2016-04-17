@@ -26,6 +26,15 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
 
 
+class MyUserProfile(generics.ListCreateAPIView):
+
+    def get_queryset(self):
+        return UserProfile.objects.filter(user=self.request.user.id)
+
+    serializer_class = UserProfileSerializer
+    permission_classes = (IsAuthenticated,)
+
+
 class UserProfileList(generics.ListCreateAPIView):
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
