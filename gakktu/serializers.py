@@ -74,7 +74,8 @@ class CategorySerializer(serializers.ModelSerializer):
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
-        fields = ('id', 'title', 'content', 'image', 'author')
+        fields = ('id', 'title', 'content', 'image', 'author', 'created_at',
+            'updated_at')
 
 
 #class ArticleCommentSerializer(serializers.ModelSerializer):

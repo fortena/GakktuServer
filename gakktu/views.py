@@ -3,6 +3,7 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets, generics, status
 from rest_framework.response import Response
+from datetime import datetime
 from .models import (Gender, Country, Language, Credential, Person,
                      Category, Article, UserProfile)
 from .serializers import (UserSerializer, GroupSerializer, GenderSerializer, CountrySerializer, LanguageSerializer,
@@ -101,7 +102,9 @@ class ArticleList(generics.ListCreateAPIView):
             'title': request.data.get('title'),
             'content': request.data.get('content'),
             'image': request.data.get('image'),
-            'author': self.request.user.id
+            'author': self.request.user.id,
+            'created_at': datetime.now(),
+            'updated_at': datetime.now()
         }
         serializer = ArticleSerializer(data=data)
         self.perform_create(serializer)

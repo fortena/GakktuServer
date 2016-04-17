@@ -77,6 +77,8 @@ class Article(models.Model):
     content = models.TextField(default='Woops somebody forgot about me')
     image = models.TextField(default='http://www.liveinthegrey.com/wp-content/uploads/2015/12/used-100x100.jpg')
     author = models.ForeignKey(User)
+    created_at = models.DateTimeField()
+    updated_at = models.DateTimeField()
 
 
 #class ArticleComment(Content):
