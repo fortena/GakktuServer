@@ -74,7 +74,7 @@ class Category(models.Model):
 class Article(models.Model):
     title = models.TextField()
     content = models.TextField(default='Woops somebody forgot about me')
-    image = models.TextField(default='http://www.liveinthegrey.com/wp-content/uploads/2015/12/used-100x100.jpg')
+    image = models.TextField(default='http://www.liveinthegrey.com/wp-content/uploads/2015/12/used-100x100.jpg', blank=True)
     author = models.ForeignKey(User)
     created_at = models.DateTimeField()
     updated_at = models.DateTimeField()
