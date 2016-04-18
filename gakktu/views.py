@@ -4,6 +4,7 @@ from django.contrib.auth.models import User, Group
 from rest_framework import viewsets, generics, status
 from rest_framework.response import Response
 from datetime import datetime
+from rest_framework import filters
 from .models import (Gender, Country, Language, Credential, Person,
                      Category, Article, UserProfile)
 from .serializers import (UserSerializer, GroupSerializer, GenderSerializer, CountrySerializer, LanguageSerializer,
@@ -127,6 +128,8 @@ class ArticleList(generics.ListCreateAPIView):
 
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('title', 'content')
     #permission_classes = (IsAuthenticated,)
 
 

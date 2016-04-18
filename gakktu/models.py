@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
 class Gender(models.Model):
     name = models.TextField()
 
@@ -79,7 +78,6 @@ class Article(models.Model):
     author = models.ForeignKey(User)
     created_at = models.DateTimeField()
     updated_at = models.DateTimeField()
-
 
 #class ArticleComment(Content):
 #    Article = models.ForeignKey(Article)
